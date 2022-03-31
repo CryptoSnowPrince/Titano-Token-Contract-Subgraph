@@ -1,0 +1,40 @@
+type Approval @entity {
+  id: ID!
+  owner: Bytes! # address
+  spender: Bytes! # address
+  value: BigInt! # uint256
+}
+
+type LogRebase @entity {
+  id: ID!
+  epoch: BigInt! # uint256
+  totalSupply: BigInt! # uint256
+}
+
+type MinterAdded @entity {
+  id: ID!
+  account: Bytes! # address
+}
+
+type MinterRemoved @entity {
+  id: ID!
+  account: Bytes! # address
+}
+
+type OwnershipRenounced @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+}
+
+type OwnershipTransferred @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+}
+
+type Transfer @entity {
+  id: ID!
+  from: Bytes! # address
+  to: Bytes! # address
+  value: BigInt! # uint256
+}

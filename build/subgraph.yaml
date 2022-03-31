@@ -1,0 +1,42 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Titano
+    network: bsc
+    source:
+      address: "0xBA96731324dE188ebC1eD87ca74544dDEbC07D7f"
+      abi: Titano
+      startBlock: 12692758
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - LogRebase
+        - MinterAdded
+        - MinterRemoved
+        - OwnershipRenounced
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: Titano
+          file: Titano/abis/Titano.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: LogRebase(indexed uint256,uint256)
+          handler: handleLogRebase
+        - event: MinterAdded(indexed address)
+          handler: handleMinterAdded
+        - event: MinterRemoved(indexed address)
+          handler: handleMinterRemoved
+        - event: OwnershipRenounced(indexed address)
+          handler: handleOwnershipRenounced
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: Titano/Titano.wasm
